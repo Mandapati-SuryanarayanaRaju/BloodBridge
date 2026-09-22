@@ -1,0 +1,120 @@
+/* Navbar.css */
+
+:root {
+  --nav-bg: #0b0b0b;
+  --blood-red: #e50914;
+  --blood-hover: #b80000;
+  --text-light: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.65);
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--nav-bg);
+  height: 50px; /* Reduced further from 60px */
+  padding: 1.5rem 4rem;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Tighter gap */
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.logo img {
+  height: 64px; /* Reduced further from 32px */
+  width: auto;
+  object-fit: contain;
+  display: block;
+  filter: contrast(150%) brightness(110%);
+  mix-blend-mode: screen; 
+}
+
+.logo .title {
+  color: var(--blood-red);
+  font-size: 0.85rem; /* Reduced from 1rem */
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Nav Links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem; /* Tighter spacing between links */
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.65rem; /* Reduced from 0.8rem */
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  padding: 4px 0;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: var(--text-light);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--blood-red);
+  transition: width 0.2s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* Action Button */
+.action-btn {
+  display: flex;
+  align-items: center;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--blood-red);
+  color: #ffffff;
+  border: none;
+  border-radius: 9999px;
+  padding: 0.4rem 0.7rem; /* Tighter button padding */
+  font-size: 0.5rem; /* Reduced from 0.8rem */
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.cta-btn svg {
+  font-size: 0.65rem; /* Scaled down icon */
+}
+
+.cta-btn:hover {
+  background-color: var(--blood-hover);
+  transform: translateY(-1px);
+}

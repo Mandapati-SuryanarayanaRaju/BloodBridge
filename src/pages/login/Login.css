@@ -1,0 +1,513 @@
+/* ========================================
+   GLOBAL RESET
+======================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: #f5f5f5;
+  color: #111827;
+}
+
+/* ========================================
+   MAIN CONTAINER
+======================================== */
+
+.main-container {
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 28px;
+
+  
+}
+
+/* ========================================
+   LOGIN CARD
+======================================== */
+
+.main-container {
+  max-width: 1280px;
+  margin: 0 auto;
+
+  
+}
+
+.left-section,
+.right-section {
+  min-height: 735px;
+  /* Soft shadow effect */
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.03),
+    0 10px 25px rgba(0, 0, 0, 0.06),
+    0 20px 50px rgba(0, 0, 0, 0.04);
+
+  border-radius: 10px;
+}
+
+.left-section {
+  width: 46%;
+  background: #063b36;
+
+  border-radius: 7px 0 0 7px;
+}
+
+.right-section {
+  width: 54%;
+  background: #ffffff;
+
+  border-radius: 0 7px 7px 0;
+
+  position: relative;
+}
+
+/* ========================================
+   LEFT SECTION
+======================================== */
+
+.left-section {
+  padding: 30px 42px;
+
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/* ========================================
+   LOGO
+======================================== */
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-container img {
+  width: 22px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.logo-container .title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #f5f7f7;
+  letter-spacing: -0.4px;
+}
+
+.logo-container .title span {
+  color: #ff5964;
+}
+
+/* ========================================
+   HERO TITLE
+======================================== */
+
+.hero-title {
+  margin-top: 58px;
+
+  max-width: 320px;
+
+  font-size: 30px;
+  line-height: 1.25;
+  font-weight: 700;
+
+  color: #ffffff;
+  letter-spacing: -0.8px;
+}
+
+.hero-title span {
+  color: #32d583;
+}
+
+.hero-sub-title {
+  margin-top: 15px;
+
+  font-size: 13px;
+  font-weight: 400;
+
+  color: #b7cfcb;
+}
+
+/* ========================================
+   HERO IMAGE
+======================================== */
+
+.image {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 20px;
+}
+
+.image img {
+  width: 250px;
+  max-width: 100%;
+
+  object-fit: contain;
+}
+
+/* ========================================
+   QUOTES / FEATURES
+======================================== */
+
+.qoutes-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  margin-top: 10px;
+}
+
+.qoute {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 16px;
+}
+
+.symbol {
+  width: 32px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 21px;
+  color: #8ff5d1;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.main-content {
+  font-size: 12px;
+  font-weight: 600;
+
+  color: #ffffff;
+}
+
+.sub-content {
+  max-width: 220px;
+
+  font-size: 11px;
+  line-height: 1.6;
+
+  color: #a5c1bd;
+}
+
+/* ========================================
+   RIGHT SECTION
+======================================== */
+
+.right-section {
+  padding: 30px;
+  justify-content: center;
+}
+
+/* ========================================
+   SIGNUP TEXT
+======================================== */
+
+.signup-text {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  gap: 8px;
+
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.signup-text Link {
+  color: #087f69;
+  text-decoration: none; 
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.signup-text Link:hover {
+  color: #065f52;
+}
+
+/* ========================================
+   LOGIN FORM CONTAINER
+======================================== */
+
+.login-form-container {
+  width: 100%;
+  max-width: 390px;
+
+  margin: 105px auto 0;
+}
+
+/* ========================================
+   FORM TITLE
+======================================== */
+
+.form-title h3 {
+  font-size: 25px;
+  font-weight: 700;
+
+  color: #111827;
+
+  letter-spacing: -0.7px;
+}
+
+.form-title p {
+  margin-top: 8px;
+
+  font-size: 13px;
+
+  color: #7b8794;
+}
+
+/* ========================================
+   FORM
+======================================== */
+
+form {
+  margin-top: 32px;
+}
+
+form label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  color: #374151;
+}
+
+form input {
+  width: 100%;
+  height: 38px;
+
+  padding: 0 12px;
+
+  border: 1px solid #505050;
+
+  border-radius: 6px;
+
+  outline: none;
+
+  font-size: 12px;
+
+  color: #1f2937;
+
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+form input:focus {
+  border-color: #000000;
+
+  border-width: 2px;
+
+  box-shadow: 0 0 0 3px rgba(21, 156, 124, 0.08);
+}
+
+form input::placeholder {
+  color: #a4adb5;
+}
+
+/* ========================================
+   INPUT SPACING
+======================================== */
+
+form input + br + label {
+  margin-top: 20px;
+}
+
+/* ========================================
+   FORGOT PASSWORD
+======================================== */
+
+form span {
+  display: block;
+
+  text-align: right;
+
+  margin-top: 10px;
+
+  font-size: 11px;
+  font-weight: 500;
+
+  color: #07966f;
+
+  cursor: pointer;
+}
+
+form span:hover {
+  color: #056c52;
+}
+
+/* ========================================
+   LOGIN BUTTON
+======================================== */
+
+form button[type="submit"] {
+  width: 100%;
+  height: 35px;
+
+  margin-top: 22px;
+
+  border: none;
+  border-radius: 5px;
+
+  background: #08665a;
+
+  color: #ffffff;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: background 0.2s, transform 0.2s;
+}
+
+form button[type="submit"]:hover {
+  background: #075247;
+}
+
+form button[type="submit"]:active {
+  transform: scale(0.99);
+}
+
+/* ========================================
+   GOOGLE SIGN-IN
+======================================== */
+
+.google-signin-btn {
+  margin-top: 20px;
+}
+
+.google-signin-btn button {
+  width: 100%;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  background: #f0f0f0;
+
+  border: 1px solid #414141;
+
+  border-radius: 6px;
+
+  color: #374151;
+
+  font-size: 12px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.google-signin-btn button:hover {
+  background: #f8fafb;
+
+  border-color: #1a1a1a;
+}
+
+.google-signin-btn button svg {
+  font-size: 17px;
+}
+
+/* ========================================
+   TABLET RESPONSIVE
+======================================== */
+
+@media (max-width: 900px) {
+
+  .main-container {
+    padding: 20px;
+  }
+
+  .left-section {
+    width: 45%;
+    padding: 28px;
+  }
+
+  .right-section {
+    width: 55%;
+    padding: 28px;
+  }
+
+  .hero-title {
+    font-size: 26px;
+  }
+
+  .login-form-container {
+    margin-top: 90px;
+  }
+
+}
+
+
+/* ========================================
+   MOBILE RESPONSIVE
+======================================== */
+
+@media (max-width: 650px) {
+
+  .main-container {
+    min-height: 100vh;
+
+    padding: 0;
+
+    display: block;
+  }
+
+  .left-section {
+    display: none;
+  }
+
+  .right-section {
+    width: 100%;
+    min-height: 100vh;
+
+    border-radius: 0;
+
+    padding: 28px 24px;
+  }
+
+  .signup-text {
+    font-size: 12px;
+  }
+
+  .login-form-container {
+    max-width: 100%;
+
+    margin-top: 100px;
+  }
+
+  .form-title h3 {
+    font-size: 26px;
+  }
+
+}
