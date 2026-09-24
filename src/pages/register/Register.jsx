@@ -5,7 +5,9 @@ import signupAssest from "../../assets/public/signupAssest.png";
 import { MdGroups } from "react-icons/md";
 import { FaLocationDot, FaHeart } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+import { supabase } from "../../services/supabaseClient.js";
 
 import "./Register.css";
 
@@ -15,14 +17,15 @@ const Register = () => {
     Donor: "DONOR",
   };
 
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [cnfPassword, setCnfPassword] = useState("");
   const [role, setRole] = useState(roles.Donor);
   const [acceptPP, setAcceptPP] = useState(false);
 
-  const handleRegister = (e) => {
+  const navigator = useNavigate();
+
+  const handleRegister = async (e) => {
     e.preventDefault();
 
     if (!email.trim()) {
@@ -45,29 +48,73 @@ const Register = () => {
       return;
     }
 
-    const registerData = {
-      email,
-      password,
-      role,
-      acceptPP,
-    };
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email: email.trim(),
+        password: password,
+        options: {
+          emailRedirectTo: "http://localhost:5173/login/",
+          data: {
+            role: role,
+          },
+        },
+      });
 
-    console.log("Register Data:", registerData);
+      if (error) {
+        console.error("Registration error:", error);
+        alert(error.message);
+        return;
+      }
 
-    setEmail("");
-    setPassword("");
-    setCnfPassword("");
-    setRole(roles.Donor);
-    setAcceptPP(false);
+      console.log("Registration successful!", data);
 
+      alert("Registration successful! Please check your email to verify your account.");
+
+      setEmail("");
+      setPassword("");
+      setCnfPassword("");
+      setRole(roles.Donor);
+      setAcceptPP(false);
+
+      navigator("/login");
+    } catch (error) {
+      console.error("Unexpected registration error:", error);
+      alert("Something went wrong, please try again.");
+    }
+
+    // const registerData = {
+    //   email,
+    //   password,
+    //   role,
+    //   acceptPP,
+    // };
+
+    // console.log("Register Data:", registerData);
+  };
+
+  const handleGoogleSignup = async () => {
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: "google",
+        options : {
+          redirectTo: "http://localhost:5173/login"
+        }
+      });
+
+      if(error){
+        console.error("Google signup error:", error);
+        alert(error.message);
+      }
+    } catch (error) {
+      console.error("Unexpected Google signup error:", error);
+      alert("Something went wrong with Google signup.");
+    }
   };
 
   return (
     <div className="main-container">
-
       {/* ================= LEFT SECTION ================= */}
       <div className="left-section">
-
         <div className="logo-container">
           <img src={BloodBridgeLogo} alt="BloodBridge Logo" />
 
@@ -80,25 +127,20 @@ const Register = () => {
           Join a community that <span>Saves lives.</span>
         </div>
 
-        <div className="hero-sub-title">
-          Be a donor. Be a hero.
-        </div>
+        <div className="hero-sub-title">Be a donor. Be a hero.</div>
 
         <div className="image">
           <img src={signupAssest} alt="Save Heart" />
         </div>
 
         <div className="qoutes-container">
-
           <div className="qoute">
             <div className="symbol">
               <MdGroups />
             </div>
 
             <div className="content">
-              <div className="main-content">
-                Make an impact
-              </div>
+              <div className="main-content">Make an impact</div>
 
               <div className="sub-content">
                 Your donation can save multiple lives.
@@ -112,13 +154,9 @@ const Register = () => {
             </div>
 
             <div className="content">
-              <div className="main-content">
-                Find blood faster
-              </div>
+              <div className="main-content">Find blood faster</div>
 
-              <div className="sub-content">
-                Help patients in urgent need.
-              </div>
+              <div className="sub-content">Help patients in urgent need.</div>
             </div>
           </div>
 
@@ -128,44 +166,32 @@ const Register = () => {
             </div>
 
             <div className="content">
-              <div className="main-content">
-                Be a part of change
-              </div>
+              <div className="main-content">Be a part of change</div>
 
               <div className="sub-content">
                 A healthier, kinder tomorrow starts with you.
               </div>
             </div>
           </div>
-
         </div>
       </div>
 
       {/* ================= RIGHT SECTION ================= */}
       <div className="right-section">
-
         <div className="signup-text">
-          Already have an account?{" "}
-          <Link to="/login">Log in</Link>
+          Already have an account? <Link to="/login">Log in</Link>
         </div>
 
         <div className="login-form-container">
-
           <div className="form-title">
             <h3>Create your account</h3>
 
-            <p>
-              Join BloodBridge and be a part of a life-saving community.
-            </p>
+            <p>Join BloodBridge and be a part of a life-saving community.</p>
           </div>
 
           <form onSubmit={handleRegister}>
-
-
             {/* Email */}
-            <label htmlFor="email">
-              Email
-            </label>
+            <label htmlFor="email">Email</label>
 
             <input
               type="email"
@@ -178,9 +204,7 @@ const Register = () => {
             />
 
             {/* Password */}
-            <label htmlFor="password">
-              Password
-            </label>
+            <label htmlFor="password">Password</label>
 
             <input
               type="password"
@@ -193,9 +217,7 @@ const Register = () => {
             />
 
             {/* Confirm Password */}
-            <label htmlFor="cnfpassword">
-              Confirm Password
-            </label>
+            <label htmlFor="cnfpassword">Confirm Password</label>
 
             <input
               type="password"
@@ -208,12 +230,9 @@ const Register = () => {
             />
 
             {/* Category */}
-            <label>
-              I am registering as
-            </label>
+            <label>I am registering as</label>
 
             <div className="category-selection-container">
-
               {/* Donor */}
               <div className="category">
                 <input
@@ -225,9 +244,7 @@ const Register = () => {
                   onChange={(e) => setRole(e.target.value)}
                 />
 
-                <label htmlFor="donor">
-                  Donor
-                </label>
+                <label htmlFor="donor">Donor</label>
               </div>
 
               {/* Organization */}
@@ -241,16 +258,12 @@ const Register = () => {
                   onChange={(e) => setRole(e.target.value)}
                 />
 
-                <label htmlFor="organization">
-                  Organization
-                </label>
+                <label htmlFor="organization">Organization</label>
               </div>
-
             </div>
 
             {/* Terms & Privacy */}
             <div className="tc-pp-container">
-
               <input
                 type="checkbox"
                 name="tcpp"
@@ -260,37 +273,26 @@ const Register = () => {
               />
 
               <label htmlFor="tcpp">
-                I agree to the{" "}
-                <span>Terms of Service</span>
-                {" "}and{" "}
+                I agree to the <span>Terms of Service</span> and{" "}
                 <span>Privacy Policy</span>
               </label>
-
             </div>
 
             {/* Register Button */}
-            <button type="submit">
-              Create Account
-            </button>
-
+            <button type="submit">Create Account</button>
           </form>
 
           {/* Google Sign Up */}
           <div className="google-signin-btn">
-
-            <button type="button">
+            <button type="button" onClick={handleGoogleSignup}>
               <FcGoogle />
               Continue with Google
             </button>
-
           </div>
-
         </div>
       </div>
-
     </div>
   );
 };
 
 export default Register;
-
